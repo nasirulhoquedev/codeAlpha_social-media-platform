@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pulse - A sleek, modern social media platform featuring rich user profiles, dynamic posts, nested comments, and interactive like/follow network.">
+  <title>Pulse — Modern Social Media Platform</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="app-container" class="app-layout">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <a href="#" id="brand-logo" class="brand-logo" title="Pulse Social">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="brand-name">Pulse<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <button id="nav-btn-feed" class="nav-item active" data-view="feed">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home Feed</span>
+        </button>
+
+        <button id="nav-btn-explore" class="nav-item" data-view="explore">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+          <span>Explore</span>
+        </button>
+
+        <button id="nav-btn-profile" class="nav-item" data-view="profile">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>My Profile</span>
+        </button>
+
+        <button id="nav-btn-stats" class="nav-item" data-view="stats">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"></path>
+            <path d="m19 9-5 5-4-4-3 3"></path>
+          </svg>
+          <span>Community Pulse</span>
+        </button>
+      </nav>
+
+      <!-- Post Trigger Button -->
+      <button id="btn-quick-compose" class="btn btn-primary btn-compose" title="Compose new post">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span>New Pulse</span>
+      </button>
+
+      <!-- Sidebar Footer: Active User & Theme -->
+      <div class="sidebar-footer">
+        <!-- Persona Switcher -->
+        <div class="persona-card" id="persona-switcher-card">
+          <div class="persona-avatar-wrapper">
+            <img id="active-user-avatar" src="" alt="Active User Avatar" class="avatar-sm">
+            <span class="online-indicator"></span>
+          </div>
+          <div class="persona-info">
+            <div id="active-user-name" class="persona-name">Elena Rostova</div>
+            <div id="active-user-handle" class="persona-handle">@elenarostova</div>
+          </div>
+          <button id="btn-switch-persona" class="btn-icon-subtle" title="Switch User Persona">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m7 15 5 5 5-5"></path>
+              <path d="m7 9 5-5 5-5"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Controls: Theme toggle & New User -->
+        <div class="sidebar-controls">
+          <button id="btn-theme-toggle" class="btn-theme-toggle" title="Toggle Dark/Light Mode">
+            <div class="toggle-icon sun">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </div>
+            <div class="toggle-icon moon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
+            <span id="theme-label">Dark</span>
+          </button>
+
+          <button id="btn-create-account" class="btn-text-subtle" title="Create a new demo persona">
+            + New Persona
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER FEED COLUMN -->
+    <main id="main-content" class="main-content">
+      
+      <!-- Top Sticky App Bar -->
+      <header class="top-bar">
+        <div class="top-bar-title">
+          <h1 id="view-heading">Social Feed</h1>
+          <span id="view-subheading" class="top-bar-badge">Live Updates</span>
+        </div>
+
+        <!-- Feed Tabs (Visible on Home Feed) -->
+        <div id="feed-tabs" class="tabs-container">
+          <button id="tab-for-you" class="tab-btn active" data-feed="for_you">For You</button>
+          <button id="tab-following" class="tab-btn" data-feed="following">Following</button>
+        </div>
+      </header>
+
+      <!-- VIEW: FEED -->
+      <section id="view-feed" class="content-view active">
+        <!-- Post Composer Box -->
+        <div id="post-composer-card" class="composer-card">
+          <div class="composer-top">
+            <img id="composer-user-avatar" src="" alt="Current User" class="avatar-md composer-avatar">
+            <div class="composer-body">
+              <textarea id="composer-textarea" placeholder="Share your latest thoughts, projects, or questions..." rows="2" maxlength="500"></textarea>
+              
+              <!-- Image Preview Box -->
+              <div id="composer-image-preview-wrapper" class="composer-image-preview-wrapper hidden">
+                <img id="composer-image-preview" src="" alt="Post Attachment Preview">
+                <button id="btn-remove-attachment" class="btn-remove-attachment" title="Remove image">&times;</button>
+              </div>
+
+              <!-- Media Attachment Input Panel -->
+              <div id="composer-media-panel" class="composer-media-panel hidden">
+                <div class="input-with-action">
+                  <input type="url" id="composer-image-url-input" placeholder="Paste image URL (Unsplash, imgur, etc.)...">
+                  <button id="btn-apply-image-url" class="btn btn-secondary btn-sm">Attach</button>
+                </div>
+                <div class="preset-images-picker">
+                  <span class="preset-label">Quick Presets:</span>
+                  <button type="button" class="chip-preset" data-url="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80">💻 Tech</button>
+                  <button type="button" class="chip-preset" data-url="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&auto=format&fit=crop&q=80">🎨 Design</button>
+                  <button type="button" class="chip-preset" data-url="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&auto=format&fit=crop&q=80">🌆 City</button>
+                  <button type="button" class="chip-preset" data-url="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop&q=80">☕ Desk</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="composer-footer">
+            <div class="composer-tools">
+              <button id="btn-toggle-media-panel" class="btn-icon" title="Attach Image">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                  <circle cx="9" cy="9" r="2"></circle>
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                </svg>
+                <span>Image</span>
+              </button>
+
+              <button id="btn-add-hashtag" class="btn-icon" title="Add Hashtag">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="9" x2="20" y2="9"></line>
+                  <line x1="4" y1="15" x2="20" y2="15"></line>
+                  <line x1="10" y1="3" x2="8" y2="21"></line>
+                  <line x1="16" y1="3" x2="14" y2="21"></line>
+                </svg>
+                <span>Tag</span>
+              </button>
+            </div>
+
+            <div class="composer-submit-group">
+              <span id="composer-char-count" class="char-count">500</span>
+              <button id="btn-submit-post" class="btn btn-primary" disabled>
+                <span>Publish</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter banner (shown when searching or filtering) -->
+        <div id="filter-banner" class="filter-banner hidden">
+          <span id="filter-banner-text">Showing search results</span>
+          <button id="btn-clear-filter" class="btn-clear-filter">&times; Clear filter</button>
+        </div>
+
+        <!-- Posts Feed Stream -->
+        <div id="posts-stream" class="posts-stream">
+          <!-- Dynamically populated post cards -->
+          <div class="stream-loading">
+            <div class="spinner"></div>
+            <p>Gathering fresh pulses...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: USER PROFILE -->
+      <section id="view-profile" class="content-view">
+        <div class="profile-container">
+          <!-- Cover Banner -->
+          <div class="profile-banner-wrapper">
+            <img id="profile-banner-img" src="" alt="Profile Banner" class="profile-banner-img">
+            <div class="profile-banner-overlay"></div>
+          </div>
+
+          <!-- Profile Details Header -->
+          <div class="profile-card">
+            <div class="profile-avatar-row">
+              <div class="profile-avatar-wrapper">
+                <img id="profile-avatar-img" src="" alt="Profile Avatar" class="profile-avatar-img">
+              </div>
+              <div class="profile-actions-slot" id="profile-actions-slot">
+                <!-- Dynamically filled: "Edit Profile" or "Follow/Unfollow" + "Switch to" -->
+              </div>
+            </div>
+
+            <div class="profile-info-block">
+              <h2 id="profile-display-name" class="profile-name">User Name</h2>
+              <div id="profile-handle" class="profile-handle">@username</div>
+              <p id="profile-bio" class="profile-bio">User biography goes here.</p>
+              
+              <div class="profile-meta-row">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span id="profile-join-date">Joined recently</span>
+                </div>
+              </div>
+
+              <!-- Clickable Follower / Following Stats -->
+              <div class="profile-stats-bar">
+                <div class="stat-pill">
+                  <strong id="profile-stat-posts">0</strong>
+                  <span>Posts</span>
+                </div>
+                <button class="stat-pill interactive" id="btn-view-following" title="View following">
+                  <strong id="profile-stat-following">0</strong>
+                  <span>Following</span>
+                </button>
+                <button class="stat-pill interactive" id="btn-view-followers" title="View followers">
+                  <strong id="profile-stat-followers">0</strong>
+                  <span>Followers</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Profile Nav Tabs -->
+            <div class="profile-sub-tabs">
+              <button class="profile-tab-btn active" data-subtab="posts">Pulses</button>
+              <button class="profile-tab-btn" data-subtab="liked">Liked</button>
+            </div>
+          </div>
+
+          <!-- Profile Posts Container -->
+          <div id="profile-posts-container" class="profile-posts-container">
+            <div class="stream-loading">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: EXPLORE -->
+      <section id="view-explore" class="content-view">
+        <div class="explore-container">
+          <div class="explore-hero">
+            <h2>Explore Pulse Community</h2>
+            <p>Discover creative engineers, designers, and thinkers shaping the network.</p>
+          </div>
+
+          <div class="explore-section">
+            <h3 class="section-title">Featured Creators</h3>
+            <div id="explore-creators-grid" class="creators-grid">
+              <!-- Dynamically populated creator cards -->
+            </div>
+          </div>
+
+          <div class="explore-section">
+            <h3 class="section-title">Trending Discussions</h3>
+            <div class="trending-tags-grid">
+              <button class="trending-tag-card" data-tag="#DesignSystems">
+                <span class="tag-hash">#</span>
+                <div class="tag-meta">
+                  <span class="tag-name">DesignSystems</span>
+                  <span class="tag-count">Modern UI & glassmorphic patterns</span>
+                </div>
+              </button>
+              <button class="trending-tag-card" data-tag="#AI">
+                <span class="tag-hash">#</span>
+                <div class="tag-meta">
+                  <span class="tag-name">ArtificialIntelligence</span>
+                  <span class="tag-count">Neural nets & agent architectures</span>
+                </div>
+              </button>
+              <button class="trending-tag-card" data-tag="#Photography">
+                <span class="tag-hash">#</span>
+                <div class="tag-meta">
+                  <span class="tag-name">Photography</span>
+                  <span class="tag-count">Architecture & visual narratives</span>
+                </div>
+              </button>
+              <button class="trending-tag-card" data-tag="#Backend">
+                <span class="tag-hash">#</span>
+                <div class="tag-meta">
+                  <span class="tag-name">Backend</span>
+                  <span class="tag-count">High throughput databases & Node</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: STATS -->
+      <section id="view-stats" class="content-view">
+        <div class="stats-view-container">
+          <div class="stats-header">
+            <h2>Platform Metrics & Health</h2>
+            <p>Real-time telemetry of users, posts, comments, and engagement activity.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-metric-card">
+              <div class="stat-icon users-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="stat-details">
+                <div class="metric-number" id="stats-total-users">0</div>
+                <div class="metric-label">Registered Creators</div>
+              </div>
+            </div>
+
+            <div class="stat-metric-card">
+              <div class="stat-icon posts-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div class="stat-details">
+                <div class="metric-number" id="stats-total-posts">0</div>
+                <div class="metric-label">Published Pulses</div>
+              </div>
+            </div>
+
+            <div class="stat-metric-card">
+              <div class="stat-icon likes-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </div>
+              <div class="stat-details">
+                <div class="metric-number" id="stats-total-likes">0</div>
+                <div class="metric-label">Likes Exchanged</div>
+              </div>
+            </div>
+
+            <div class="stat-metric-card">
+              <div class="stat-icon comments-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                </svg>
+              </div>
+              <div class="stat-details">
+                <div class="metric-number" id="stats-total-comments">0</div>
+                <div class="metric-label">Comments Posted</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Maintenance Section -->
+          <div class="stats-admin-card">
+            <div class="admin-info">
+              <h3>Demo Playground Reset</h3>
+              <p>Want to start fresh? Reset all tables and reload the pristine demo dataset with Elena, Liam, Sophia, and Marcus.</p>
+            </div>
+            <button id="btn-reset-database" class="btn btn-danger">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                <path d="M8 16H3v5"></path>
+              </svg>
+              <span>Reset & Reseed Demo Data</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT WIDGETS SIDEBAR -->
+    <aside id="right-sidebar" class="right-sidebar">
+      <!-- Search Widget -->
+      <div class="search-widget">
+        <div class="search-input-wrapper">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="global-search-input" placeholder="Search pulses, tags, authors...">
+          <button id="btn-clear-search" class="btn-clear-search hidden">&times;</button>
+        </div>
+      </div>
+
+      <!-- Who to Follow Widget -->
+      <div class="widget-card" id="widget-who-to-follow">
+        <div class="widget-header">
+          <h3 class="widget-title">Who to Follow</h3>
+        </div>
+        <div id="who-to-follow-list" class="who-to-follow-list">
+          <!-- Dynamically populated recommendations -->
+          <div class="widget-placeholder">Loading suggestions...</div>
+        </div>
+      </div>
+
+      <!-- Trending Hashtags Widget -->
+      <div class="widget-card">
+        <div class="widget-header">
+          <h3 class="widget-title">Trending for You</h3>
+        </div>
+        <div class="trending-list">
+          <div class="trending-item" data-tag="#DesignSystems">
+            <div class="trending-context">Technology · Trending</div>
+            <div class="trending-tag">#DesignSystems</div>
+            <div class="trending-count">2.4k Pulses</div>
+          </div>
+          <div class="trending-item" data-tag="#AI">
+            <div class="trending-context">AI & Science · Trending</div>
+            <div class="trending-tag">#ArtificialIntelligence</div>
+            <div class="trending-count">14.8k Pulses</div>
+          </div>
+          <div class="trending-item" data-tag="#Photography">
+            <div class="trending-context">Arts · Trending</div>
+            <div class="trending-tag">#UrbanScapes</div>
+            <div class="trending-count">1.1k Pulses</div>
+          </div>
+          <div class="trending-item" data-tag="#Backend">
+            <div class="trending-context">Engineering · Trending</div>
+            <div class="trending-tag">#CleanCode</div>
+            <div class="trending-count">5.9k Pulses</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <footer class="app-footer">
+        <p>© 2026 Pulse Social Network · Built with Express & SQLite</p>
+      </footer>
+    </aside>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODALS -->
+  <!-- ========================================== -->
+
+  <!-- Modal: Persona Switcher -->
+  <div id="modal-persona-picker" class="modal-overlay hidden">
+    <div class="modal-box modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Switch Persona</h3>
+        <button class="modal-close" data-close="modal-persona-picker">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">Choose who you want to experience the platform as:</p>
+        <div id="persona-picker-list" class="persona-picker-list">
+          <!-- Dynamically loaded personas -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Profile -->
+  <div id="modal-edit-profile" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Profile</h3>
+        <button class="modal-close" data-close="modal-edit-profile">&times;</button>
+      </div>
+      <form id="form-edit-profile" class="modal-body form-grid">
+        <div class="form-group">
+          <label for="edit-name">Display Name</label>
+          <input type="text" id="edit-name" required maxlength="50">
+        </div>
+        <div class="form-group">
+          <label for="edit-bio">Bio</label>
+          <textarea id="edit-bio" rows="3" maxlength="200" placeholder="Tell the world about yourself..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-avatar">Avatar URL</label>
+          <input type="url" id="edit-avatar" placeholder="https://images.unsplash.com/...">
+        </div>
+        <div class="form-group">
+          <label for="edit-banner">Cover Banner URL</label>
+          <input type="url" id="edit-banner" placeholder="https://images.unsplash.com/...">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close="modal-edit-profile">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Create New Persona -->
+  <div id="modal-create-account" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Create New Persona</h3>
+        <button class="modal-close" data-close="modal-create-account">&times;</button>
+      </div>
+      <form id="form-create-account" class="modal-body form-grid">
+        <div class="form-group">
+          <label for="new-username">Username (@handle)</label>
+          <div class="input-prefix-group">
+            <span class="input-prefix">@</span>
+            <input type="text" id="new-username" placeholder="johndoe" required pattern="^[a-zA-Z0-9_]{3,20}$" title="3-20 letters, numbers, or underscores">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="new-name">Full Name</label>
+          <input type="text" id="new-name" placeholder="John Doe" required maxlength="50">
+        </div>
+        <div class="form-group">
+          <label for="new-bio">Short Bio</label>
+          <textarea id="new-bio" rows="2" placeholder="Software craftsman, cyclist, coffee addict..." maxlength="200"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="new-avatar">Avatar URL (Optional)</label>
+          <input type="url" id="new-avatar" placeholder="Leave blank for automatic stylish avatar">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close="modal-create-account">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create & Join</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Follow List (Followers / Following) -->
+  <div id="modal-follow-list" class="modal-overlay hidden">
+    <div class="modal-box modal-md">
+      <div class="modal-header">
+        <h3 id="follow-list-modal-title" class="modal-title">Followers</h3>
+        <button class="modal-close" data-close="modal-follow-list">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="follow-modal-users-list" class="follow-users-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Post Likers List -->
+  <div id="modal-likers-list" class="modal-overlay hidden">
+    <div class="modal-box modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Liked by</h3>
+        <button class="modal-close" data-close="modal-likers-list">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="likers-modal-users-list" class="follow-users-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Fullscreen Image Lightbox -->
+  <div id="modal-lightbox" class="modal-lightbox hidden">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <img id="lightbox-image" src="" alt="Enlarged view">
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

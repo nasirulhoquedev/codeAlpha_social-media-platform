@@ -1,0 +1,21 @@
+{
+  "name": "pulse-social-platform",
+  "version": "1.0.0",
+  "description": "A modern mini social media platform with user profiles, posts, comments, and like/follow system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "social",
+    "express",
+    "sqlite",
+    "fullstack"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.22.3"
+  }
+}
